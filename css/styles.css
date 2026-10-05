@@ -275,6 +275,14 @@ input { font: inherit; color: inherit; font-variation-settings: inherit; }
   transition: opacity .28s var(--ease);
 }
 .actions.open { opacity: 1; pointer-events: auto; }
+@media (max-width: 479px) {
+  /* The system status bar strip sits outside the web view and stays black, so the blur
+     melts into black at the top instead of stopping at a hard edge. */
+  .actions::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 140px; pointer-events: none;
+    background: linear-gradient(#000 0%, rgba(0,0,0,.74) 19%, rgba(0,0,0,.45) 40%, rgba(0,0,0,.19) 65%, rgba(0,0,0,.05) 84%, transparent 100%);
+  }
+}
 .action-list { position: absolute; right: 20px; bottom: calc(var(--safe-bottom) + 72px); display: flex; flex-direction: column; gap: 24px; align-items: flex-end; }
 .action {
   height: 48px; display: flex; align-items: center; gap: 16px;
